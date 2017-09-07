@@ -80,7 +80,7 @@ class SemiAERanking():
         self.Decoder = self.f_act(pre_Decoder)
 
         pre_cost1 = (self.input_R[:,0:self.num_items] - self.Decoder)
-        cost1 = tf.square(self.l2_norm(pre_cost1))
+        cost1 = tf.reduce_mean(tf.square(self.l2_norm(pre_cost1)))
 
         pre_cost2 = tf.square(self.l2_norm(W)) + tf.square(self.l2_norm(V)) #+ tf.square(self.l2_norm(b)) + tf.square(self.l2_norm(mu))
         cost2 = self.lambda_value * 0.5 * pre_cost2
