@@ -85,7 +85,7 @@ class SemiAERating():
 
         pre_cost1 = tf.multiply((self.input_R[0:self.num_users, :] - self.Decoder),
                                 self.input_mask_R[0:self.num_users, :])
-        cost1 = tf.square(tf.norm(pre_cost1))
+        cost1 = tf.reduce_mean(tf.square(tf.norm(pre_cost1)))
         pre_cost2 = tf.square(tf.norm(W)) + tf.square(tf.norm(V))
         cost2 = self.lambda_value * 0.5 * pre_cost2
 
